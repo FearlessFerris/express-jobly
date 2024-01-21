@@ -5,35 +5,17 @@ const { getDatabaseUri } = require("./config");
 
 let db;
 
-// if (process.env.NODE_ENV === "production") {
-//   db = new Client({
-//     connectionString: getDatabaseUri(),
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   });
-// } else {
-//   db = new Client({
-//     connectionString: getDatabaseUri()
-//   });
-// }
-
-if ( process.env.NODE_ENV === "production" ){
+if (process.env.NODE_ENV === "production") {
   db = new Client({
     connectionString: getDatabaseUri(),
     ssl: {
       rejectUnauthorized: false
     }
   });
-}
-else{
+} else {
   db = new Client({
-    "username": "marcus",
-    "password": "USSKennedy23",
-    "hostname": "localhost",
-    "database": "jobly",
-    "port": 5432
-  }); 
+    connectionString: getDatabaseUri()
+  });
 }
 
 db.connect();
